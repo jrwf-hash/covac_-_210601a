@@ -129,6 +129,7 @@
 							<?php
             		$query = $db->query("select * from Covac_status");
                 while ($row = $query->fetch()) {
+								
               ?>
 								<div class="maps_all">
 									<div class=<?=$row["class"]?> onmouseover=mus_on(<?=$row["mus"]?>) onmouseout=mus_off(<?=$row["mus"]?>)>
