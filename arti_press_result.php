@@ -148,7 +148,7 @@
 				?>
 				<div class="responsive">
 					<div class="gallery">
-						<a target="_self" href="<?=$row["url"]?>">
+						<a target="_blank" href="<?=$row["url"]?>">
 							<img
 								src="<?=$row["img"]?>"
 								alt="<?=$row["alt"]?>"
