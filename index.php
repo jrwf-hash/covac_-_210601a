@@ -133,6 +133,13 @@
 								<div class="maps_all">
 									<div class=<?=$row["class"]?> onmouseover=mus_on(<?=$row["mus"]?>) onmouseout=mus_off(<?=$row["mus"]?>)>
 									<div class="local_name_map"><?=$row["region"]?></div><div class="local_values_map"><?=$row["human"]?></div></div>
+
+									<div class="measurement">
+										<div class="measurement_wrap">
+											<p style="font-size:14px; font-weight:500;">서울을 클릭 시 아래 그래프와 연동</p>
+										</div>
+									</div>
+
 								</div>
                         <?php
                         	}
@@ -269,7 +276,7 @@
 						];
 
 							/*월별 2개 chart_labels_1 1
-							- 데이터 y축 값 고정, 추가 더미데이터 넣어주면 고정됨 해결
+							- 데이터 y축 값 고정
 							*/
 							var chart_labels_1 = [
 							moment().subtract(2,"months").format("MM"),
@@ -284,6 +291,8 @@
 							moment().subtract(2,"days").format("MM/DD"),
 							moment().subtract(1,"days").format("MM/DD"),
 							moment().format("MM/DD")
+
+
 						];
 
 							/*서울 일단 최근 5개, 월별, 일별, 누적,*/
@@ -302,7 +311,6 @@
 							var vac_total = ['40', '10', '60', '32', '7'];
 							var vac_pz = ['60', '90', '46', '32', '7'];
 							var vac_az = ['70', '30', '56', '32', '7'];
-							var vac_seoul = ['30', '300', '560', '320', '70'];
 
 							var ctx = document.getElementById("forecast").getContext('2d');
 							var config = {
@@ -343,7 +351,6 @@
 							$("#0").click(function() {
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_daily;
-									data.datasets[0].label = "일별 접종 현황"
 									data.labels = chart_labels_2;
 									forecast_chart.update();
 							});
@@ -352,7 +359,6 @@
 							$("#1").click(function() {
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_monthly;
-									data.datasets[0].label = "월별 접종 현황"
 									data.labels = chart_labels_1;
 									forecast_chart.update();
 							});
@@ -361,42 +367,37 @@
 							$("#2").click(function() {
 									var data = forecast_chart.config.data;
 									data.datasets[0].data =  vac_accum;
-									data.datasets[0].label = "누적 접종 현황"
 									data.labels = chart_labels;
 									forecast_chart.update();
 							});
-							/*백신 - 종합 최근 5일*/
+
 							$("#3").click(function() {
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_total;
-									data.datasets[0].label = "백신 종합 접종 현황"
 									data.labels = chart_labels_2;
 									forecast_chart.update();
 							});
-							/*백신 - 화이자 최근 5일*/
 							$("#4").click(function() {
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_pz;
-									data.datasets[0].label = "화이자 백신 접종 현황"
 									data.labels = chart_labels_2;
 									forecast_chart.update();
 							});
-							/*백신 - 아스트라 최근 5일*/
 							$("#5").click(function() {
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_az;
-									data.datasets[0].label = "AZ 백신 접종 현황"
 									data.labels = chart_labels_2;
 									forecast_chart.update();
 							});
 
 							$("#8").click(function() {
 									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_seoul;
-									data.datasets[0].label = "서울 접종 현황"
-									data.labels = chart_labels_2;
+									data.datasets[0].data = rain_dataset_6;
+									data.label = "서울";
+									data.labels = chart_labels;
 									forecast_chart.update();
 							});
+
 					</script>
 					</body>
 
@@ -497,6 +498,12 @@
 
 </div>
 <!--원형 그래프 -->
+<?php
+	$num = $_REQUEST["num"];
+	$query = $db->query("select * from National where num = '$num'");
+	$row = $query->fetch();
+?>
+
 <script>
 window.onload = function() {
 
@@ -509,7 +516,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		yValueFormatString: "##0.0'%'",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{y: 25.4, label: "서울"},
+			{y: <?=$row["national"]?>, label: "<?=$row["count"]?>"},
 			{y: 20, label: "경기"},
 			{y: 17.5, label: "대구"},
 			{y: 10.7, label: "부산"},
