@@ -137,7 +137,7 @@
 
 									<div class="measurement">
 										<div class="measurement_wrap">
-											<p style="font-size:14px;">서울을 클릭 시 아래 그래프와 연동</p>
+											<p style="font-size:14px; font-weight:500;">서울을 클릭 시 아래 그래프와 연동</p>
 										</div>
 									</div>
 
