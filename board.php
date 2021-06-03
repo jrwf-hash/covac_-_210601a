@@ -158,7 +158,7 @@
 								<button type="button" class="btn_write"><a href="certification.php">글쓰기</a></button>
 							</div>
 							<div class="pages_wrapper">
-								<a class="bold_arrow" href="http://www.covac.news/board.php"><&nbsp;<</a>
+								<a class="bold_arrow" href="http://www.covac.news/board.php">&lt;&nbsp;&nbsp;&lt;</a>
 
 								<?php
 
