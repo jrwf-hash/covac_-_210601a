@@ -136,7 +136,7 @@
       </div>
       <!--하단 페이지 넘기는 부분-->
       <div class="pages_turner">
-        <a class="bold_arrow" href="http://www.covac.news/arti_vac.php"><&nbsp;<</a>
+        <a class="bold_arrow" href="http://www.covac.news/arti_vac.php"><<<</a>
         <?php
 
 			if ($first > 1) {
@@ -157,7 +157,7 @@
 		<?php
 			}
 		?>
-        <a class="bold_arrow" href="http://www.covac.news/arti_vac.php?page=<?=$numPages?>">>&nbsp;></a>
+        <a class="bold_arrow" href="http://www.covac.news/arti_vac.php?page=<?=$numPages?>">>>></a>
       </div>
     </div>
   </section>

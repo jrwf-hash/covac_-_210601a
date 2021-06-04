@@ -1,5 +1,3 @@
-<!--인증 버튼 새로 추가 됨, PHP연동 작업 필요..!!-->
-
 <?php
 	require("covacDB.php");
 ?>
@@ -76,18 +74,19 @@
 								</p>
 							</div>
 
+							<form method="post" action="form.php">
 							<div class="submit_info_container">
 								<div class="info_item">
 									<div>이름</div>
-									<input type="text" />
+									<input type="text" name="name" />
 								</div>
 								<div class="info_item">
 									<div>비밀번호</div>
-									<input type="password" />
+									<input type="password"  name="pw" />
 								</div>
 								<div class="info_item">
 									<div>비밀번호 확인</div>
-									<input type="password" />
+									<input type="password" name="pw_check"/>
 								</div>
 								<div class="info_item">
 									<div>이메일</div>
@@ -96,7 +95,12 @@
 									<a href="#" class="comfirm_btn2">인증</a>
 									<!--여기까지-->
 								</div>
-
+								<div class="info_item birthday_wrapper">
+									<div style="margin-top:10px;">생년월일</div>
+									<select id="year" name="yyyy"></select>
+									<select id="month" name="mm"></select>
+									<select id="day" name="dd"></select>
+								</div>
 								<div class="info_item">
 									<div style="margin-bottom:10px; margin-top:10px;">성별</div>
 									<input type="radio" id="man" name="gender" value="남" onclick="checkOnlyOne(this)" />
@@ -104,18 +108,12 @@
 									<input type="radio" id="woman" name="gender" value="여" onclick="checkOnlyOne(this)"/>
 									<label for="woman">여</label>
 								</div>
-								<div class="info_item birthday_wrapper">
-									<div style="margin-top:10px;">생년월일</div>
-									<select id="year" name="yyyy"></select>
-									<select id="month" name="mm"></select>
-									<select id="day" name="dd"></select>
-								</div>
-								<!--기존php에서 휴대폰번호, 인증, sms인증번호,인증 부분 삭제됨-->
 
 							</div>
 							<div class="btn_area right">
-								<button type="button" class="btn_write_4_1"><a href="board_write.php">다음</a></button>
+								<button type="submit" class="btn_write_4_1">다음</button>
 							</div>
+							</form>
 						</section>
 
 						<div id="footer_section_container">

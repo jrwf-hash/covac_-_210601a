@@ -1,5 +1,15 @@
 <?php
 	require("covacDB.php");
+	/*session_start();
+	$email		= isset($_REQUEST["email" ]) ? $_REQUEST["email" ] : "";
+	if(!($email))	{
+?>
+	<script>
+		alert('이메일 입력 후 이용가능합니다!');
+		history.back();
+	</script>
+<?php
+	} else {*/
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +120,7 @@
               </div> -->
             </div>
             <div class="footer_wrapper">
-              <button type="button" class="btn_register"><a href="board.php">등록</a></button>
+              <input type="submit" class="btn_register" value="등록">
             </div>
           </section>
           <div id="footer_section_container">
@@ -174,3 +184,7 @@ script
 </body>
 
 </html>
+
+<?php
+	//}
+?>

@@ -63,7 +63,7 @@
         </nav>
 
         <article>
-          <?php
+		<?php
 			$num = $_REQUEST["num"];
 			$query = $db->query("select * from Epilogue where num = '$num'");
 			$row = $query->fetch();
@@ -78,55 +78,30 @@
               <h3>허위 사실을 유포하시면 법적 처벌을 받을 수 있습니다.</h3>
             </div>
             <div class="write_review_container">
-				<table class="tbl_write">
-					<caption>글쓰기 폼</caption>
-					<colgroup>
-						<col width="20%" />
-						<col width="*" />
-					</colgroup>
-					<tbody>
-						<tr>
-							<td colspan="2">
-								<p class="tit">글 제목입니다.</p>
-							</td>
-						</tr>
-						<tr>
-							<td><p class="writer">작성자</p></td>
-							<td><p class="file_name"><span>파일</span> 123.jpg</p></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<textarea name="" id="" cols="30" rows="10">코로나 접종 후기 게시판 내용입니다.</textarea>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-              <!-- <div class="review_item">
-                <p style="font-size: 24px; font-weight:400;">글제목입니다.</p>
+              <div class="review_item">
+                <p style="font-size: 24px; font-weight:400;"><?=$row["title"]?></p>
               </div>
               <div class="my_post">
 
                 <p style="color: #606060;
                 background-color: #cccccc;
-                padding: 5px;
+
+				padding-left: 1px;
+				padding-right:5px;
+				padding-top: 5px;
+				padding-bottom: 5px;
                 margin-right: 520px;
                 text-align: left;
                 border-radius: 15px;
-
-                font-size: 15px;">작성자 </p>
-                <div style="position:absolute; margin-left:100px; margin-top:-25px;">
-                  <span>파일 첨부</span>
-                  <input class="input_upload_file" type="file" />
-
-                </div>
+                font-size: 15px;">작성자&nbsp;&nbsp;<?=$row["name"]?></p>
 
               </div>
               <div class="review_item">
-                <textarea rows="30" placeholder="내용입니다." readonly></textarea>
-              </div> -->
+                <textarea rows="30" readonly> <?=$row["content"]?></textarea>
+              </div>
             </div>
             <div class="footer_wrapper">
-              <button type="button" class="btn_register"><a href="board.php">뒤로</a></button>
+              <button type="button" class="btn_register"><a href="http://www.covac.news/board.php">뒤로</a></button>
             </div>
           </section>
           <div id="footer_section_container">

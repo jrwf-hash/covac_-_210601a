@@ -66,9 +66,9 @@
 						</ul>
 					</nav>
 
-          <?php
+				<?php
 			       $search = $_GET['search'];
-		      ?>
+				?>
 
 <!--메인 구성-->
 <article>
@@ -139,7 +139,7 @@
       </div>
       <!--하단 페이지 넘기는 부분-->
       <div class="pages_turner">
-        <a class="bold_arrow" href="http://www.covac.news/arti_vac_result.php?search=<?=$search?>"><&nbsp;<</a>
+        <a class="bold_arrow" href="http://www.covac.news/arti_vac_result.php?search=<?=$search?>"><<<</a>
 
         <?php
 
@@ -162,7 +162,7 @@
         			}
         		?>
 
-        <a class="bold_arrow" href="http://www.covac.news/arti_vac_result.php?page=<?=$numPages?>&search=<?=$search?>">>&nbsp;></a>
+        <a class="bold_arrow" href="http://www.covac.news/arti_vac_result.php?page=<?=$numPages?>&search=<?=$search?>">>>></a>
       </div>
     </div>
   </section>

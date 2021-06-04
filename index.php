@@ -137,7 +137,7 @@
 
 									<div class="measurement">
 										<div class="measurement_wrap">
-											<p style="font-size:14px; font-weight:300;">서울을 클릭 시 아래 그래프와 연동</p>
+											<p style="font-size:14px; font-weight:200;">서울을 클릭 시 아래 그래프와 연동</p>
 										</div>
 									</div>
 
@@ -159,7 +159,6 @@
 								0 : 일별
 								1 : 주별
 								2 : 누적
-
 								백신
 								3 : 종합
 								4 : 화이자
@@ -399,6 +398,7 @@
 							});
 
 							$("#8").click(function() {
+									downFunction();
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_seoul;
 									data.datasets[0].label = "서울 접종 현황"
@@ -508,8 +508,16 @@
 <!--원형 그래프 -->
 <?php
 	$num = $_REQUEST["num"];
-	$query = $db->query("select * from National where num = '$num'");
-	$row = $query->fetch();
+	$nationals = $db->query("select national from National where num = '$num'");
+	$counts = $db->query("select count from National where num = '$num'");
+
+	$national = $nationals->fetch();
+	$count = $counts->fetch();
+
+	$dataPoints = array(
+	array("label"=>$national, "y"=>$count)
+)
+
 ?>
 
 <script>
@@ -523,16 +531,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		startAngle: 240,
 		yValueFormatString: "##0.0'%'",
 		indexLabel: "{label} {y}",
-		dataPoints: [
-			{y: <?=$row["national"]?>, label: "<?=$row["count"]?>"},
-			{y: 20, label: "경기"},
-			{y: 17.5, label: "대구"},
-			{y: 10.7, label: "부산"},
-			{y: 9.6, label: "대전"},
-			{y: 7.1, label: "광주"},
-			{y: 9.6, label: "인천"}
-
-		]
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 chart.render();

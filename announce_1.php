@@ -132,7 +132,7 @@
 
 							</div>
 							<div class="pages_wrapper">
-								<a class="bold_arrow" href="#"><<</a>
+								<a class="bold_arrow" href="#"><<<</a>
 								<a href="#"><</a>
 								<span>
 									<a href="#">1</a>
@@ -143,7 +143,7 @@
 									<a href="#">6</a>
 								</span>
 								<a href="#">></a>
-								<a class="bold_arrow" href="#">>></a>
+								<a class="bold_arrow" href="#">>>></a>
 							</div>
 						</section>
 						<div id="footer_section_container">

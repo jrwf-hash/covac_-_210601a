@@ -16,6 +16,7 @@
 		/>
 
 		<title>COVAC</title>
+		<link rel="icon" href="./img/favicon.jpg">
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"/>
 		<link rel="stylesheet" href="./style.css" />
@@ -115,7 +116,7 @@
 												$title=$row["title"];
 											if(strlen($title)>30)
 											{
-												//title이 12을 넘어서면 ...표시
+												//title이 30을 넘어서면 ...표시
 												$title=str_replace($row["title"],mb_substr($row["title"],0,30,"utf-8")."...",$row["title"]);
 											}
 										?>
@@ -158,7 +159,7 @@
 								<button type="button" class="btn_write"><a href="certification.php">글쓰기</a></button>
 							</div>
 							<div class="pages_wrapper">
-								<a class="bold_arrow" href="http://www.covac.news/board.php">&lt;&nbsp;&nbsp;&lt;</a>
+								<a class="bold_arrow" href="http://www.covac.news/board.php"><<<</a>
 
 								<?php
 
@@ -181,7 +182,7 @@
 									}
 								?>
 
-								<a class="bold_arrow" href="http://www.covac.news/board.php?page=<?=$numPages?>">>&nbsp;></a>
+								<a class="bold_arrow" href="http://www.covac.news/board.php?page=<?=$numPages?>">>>></a>
 							</div>
 						</section>
 						<div id="footer_section_container">

@@ -2,6 +2,7 @@
 	require("covacDB.php");
 ?>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -125,7 +126,7 @@
 								</div>
 								<!--기사 구성 부분-->
 								<div class="news_container">
-									<?php
+        <?php
 
 
 			$listSize = 9;
@@ -151,7 +152,7 @@
 		?>
 			<div class="responsive">
 				<div class="gallery">
-					<a target="_blank" href="<?=$row["url"]?>">
+					<a target="_self" href="<?=$row["url"]?>">
 						<img
 							src="<?=$row["img"]?>"
 							alt="<?=$row["alt"]?>"
@@ -170,13 +171,16 @@
 				exit($e->getMessage());
 			}
 		?>
-									<div class="clearfix">
-										<button type="button" name="button"></button>
-									</div>
-								</div>
-								<!--하단 페이지 넘기는 부분-->
+
+        <!--잠깐 보류-->
+        <div class="clearfix">
+          <button type="button" name="button"></button>
+        </div>
+
+      </div>
+      <!--하단 페이지 넘기는 부분-->
 								<div class="pages_turner">
-									<a class="bold_arrow" href="http://www.covac.news/arti_press.php"><&nbsp;<</a>
+									<a class="bold_arrow" href="http://www.covac.news/arti_press.php"><<<</a>
 									<?php
 
 			if ($first > 1) {
@@ -197,7 +201,7 @@
 		<?php
 			}
 		?>
-									<a class="bold_arrow" href="http://www.covac.news/arti_press.php?page=<?=$numPages?>">>&nbsp;></a>
+									<a class="bold_arrow" href="http://www.covac.news/arti_press.php?page=<?=$numPages?>">>>></a>
 								</div>
 							</div>
 						</section>

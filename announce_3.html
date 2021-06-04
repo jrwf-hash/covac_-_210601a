@@ -32,7 +32,7 @@ COVAC로고 누르면 메인 화면으로 이동하게 링크 기능 추가
 	<body>
 		<div id="body_container">
 			<header id="header" class="display_flex_center">
-				<a href="index.html">
+				<a href="http://www.covac.news">
 					<img src="./src/assets/logo.png" alt="covac_logo" />
 				</a>
 			</header>
@@ -40,29 +40,29 @@ COVAC로고 누르면 메인 화면으로 이동하게 링크 기능 추가
 				<div class="main_content_wrapper">
 					<nav id="nav">
 						<ul class="nav_ul">
-							<li><a href="index.html" class="none_low_depth">백신</a></li>
+							<li><a href="http://www.covac.news" class="none_low_depth">백신</a></li>
 							<li>
 								<div class="has_low_depth">기사</div>
 								<ul class="low_depth">
-									<li><a href="arti_press.html">언론사별</a></li>
-									<li><a href="arti_vac.html">백신별</a></li>
+									<li><a href="arti_press.php">언론사별</a></li>
+									<li><a href="arti_vac.php">백신별</a></li>
 								</ul>
 							</li>
-							<li><a href="4.html" class="none_low_depth">접종후기</a></li>
+							<li><a href="board.php" class="none_low_depth">접종후기</a></li>
 							<li>
 								<div class="has_low_depth selected">공지</div>
 								<ul class="low_depth show2">
-									<li><a href="announce_1.html">공지사항</a></li>
-									<li><a href="announce_2.html">문의 및 제보</a></li>
-									<li><a href="announce_3.html" class="selected">후원정보</a></li>
+									<li><a href="announce_1.php">공지사항</a></li>
+									<li><a href="announce_2.php">문의 및 제보</a></li>
+									<li><a href="announce_3.php" class="selected">후원정보</a></li>
 								</ul>
 							</li>
 							<li>
 								<div class="has_low_depth">바로알기</div>
 								<ul class="low_depth">
-									<li><a href="check_vac.html">백신 종류별 특성</a></li>
-									<li><a href="check_place.html">백신 접종 기관</a></li>
-									<li><a href="check_vid.html">백신 동영상</a></li>
+									<li><a href="check_vac.php">백신 종류별 특성</a></li>
+									<li><a href="check_place.php">백신 접종 기관</a></li>
+									<li><a href="check_vid.php">백신 동영상</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -99,7 +99,7 @@ COVAC로고 누르면 메인 화면으로 이동하게 링크 기능 추가
 					$("#nav ul li a").removeClass("selected")
 					$("#nav ul.low_depth").hide()
 				}
-		
+
 				$("#nav ul li a.none_low_depth").click(function () {
 					handleCommonNavFunction()
 					$(this).addClass("selected")

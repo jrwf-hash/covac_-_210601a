@@ -2,6 +2,7 @@
 	require("covacDB.php");
 ?>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -71,6 +72,11 @@
 							</li>
 						</ul>
 					</nav>
+
+					<?php
+						$search = $_GET['search'];
+					?>
+
 					<!--메인 구성-->
 					<article>
 						<section id="section_container" class="section_arti_vac">
@@ -124,57 +130,59 @@
 									</form>
 								</div>
 								<!--기사 구성 부분-->
-								<div class="news_container">
-									<?php
-					$listSize = 9;
-					$page = empty($_REQUEST["page"]) ? 1 : $_REQUEST["page"];
+      <div class="news_container">
+        <?php
+			$listSize = 9;
+			$page = empty($_REQUEST["page"]) ? 1 : $_REQUEST["page"];
 
-					try {
+			try {
 
-					$paginationS = 5;
+			$paginationS = 5;
 
-					$first = floor(($page - 1) / $paginationS) * $paginationS + 1;
-					$last = $first + $paginationS - 1;
+			$first = floor(($page - 1) / $paginationS) * $paginationS + 1;
+			$last = $first + $paginationS - 1;
 
-					$numRecords = $db->query("select count(*) from News_Cl where title like '%{$search}%'")->fetchColumn();
-					$numPages = ceil($numRecords / $listSize);
-					if ($last > $numPages) {
-						$last = $numPages;
-					}
+			$numRecords = $db->query("select count(*) from News_Cl where title like '%{$search}%'")->fetchColumn();
+			$numPages = ceil($numRecords / $listSize);
+			if ($last > $numPages) {
+				$last = $numPages;
+			}
 
-					$start = ($page - 1) * $listSize;
-					$query = $db->query("select * from News_Cl where title like '%{$search}%' order by num desc limit $start,$listSize");
-					while ($row = $query->fetch()) {
-				?>
-				<div class="responsive">
-					<div class="gallery">
-						<a target="_blank" href="<?=$row["url"]?>">
-							<img
-								src="<?=$row["img"]?>"
-								alt="<?=$row["alt"]?>"
-								width="600"
-								height="400"
-							/>
-						</a>
-						<div class="desc">
-							<?=$row["title"]?>
-						</div>
+			$start = ($page - 1) * $listSize;
+			$query = $db->query("select * from News_Cl where title like '%{$search}%' order by num desc limit $start,$listSize");
+			while ($row = $query->fetch()) {
+		?>
+			<div class="responsive">
+				<div class="gallery">
+					<a target="_self" href="<?=$row["url"]?>">
+						<img
+							src="<?=$row["img"]?>"
+							alt="<?=$row["alt"]?>"
+							width="600"
+							height="400"
+						/>
+					</a>
+					<div class="desc">
+						<?=$row["title"]?>
 					</div>
 				</div>
-			<?php
+			</div>
+		<?php
 				}
 			} catch (PDOException $e) {
 				exit($e->getMessage());
 			}
 		?>
 
-									<div class="clearfix">
-										<button type="button" name="button"></button>
-									</div>
-								</div>
-								<!--하단 페이지 넘기는 부분-->
+        <!--잠깐 보류-->
+        <div class="clearfix">
+          <button type="button" name="button"></button>
+        </div>
+
+      </div>
+      <!--하단 페이지 넘기는 부분-->
 								<div class="pages_turner">
-         					<a class="bold_arrow" href="http://www.covac.news/arti_press_result.php?search=<?=$search?>"><&nbsp;<</a>
+         					<a class="bold_arrow" href="http://www.covac.news/arti_press_result.php?search=<?=$search?>"><<<</a>
         					<?php
 										if ($first > 1) {
 									?>
@@ -192,7 +200,7 @@
 									<?php
 										}
 									?>
-        					<a class="bold_arrow" href="http://www.covac.news/arti_press_result.php?page=<?=$numPages?>&search=<?=$search?>">>&nbsp;></a>
+        					<a class="bold_arrow" href="http://www.covac.news/arti_press_result.php?page=<?=$numPages?>&search=<?=$search?>">>>></a>
       					</div>
 							</div>
 						</section>
