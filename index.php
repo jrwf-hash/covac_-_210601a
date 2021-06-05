@@ -102,7 +102,7 @@
 								<img src='./map/m033.gif' alt='' border='0' name='mus4' class='list4'></a>
 								<a   onfocus='this.blur()' onmouseover=mus_on('mus5') onmouseout=mus_off('mus5') onclick="javascript:void(0)">
 								<img src='./map/m041.gif' alt='' border='0' name='mus5' class='list5'></a>
-								<a   onfocus='this.blur()' onmouseover=mus_on('mus6') onmouseout=mus_off('mus6') onclick="downFunction()">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus6') onmouseout=mus_off('mus6') onclick="javascript:void(0)">
 								<img src='./map/m031.gif' alt='' border='0' name='mus6' class='list6'></a>
 								<a   onfocus='this.blur()' onmouseover=mus_on('mus7') onmouseout=mus_off('mus7') onclick="javascript:void(0)">
 								<img src='./map/m043.gif' alt='' border='0' name='mus7' class='list7'></a>
@@ -129,22 +129,28 @@
 							<?php
             		$query = $db->query("select * from Covac_status");
                 while ($row = $query->fetch()) {
-
+								$pic_num = $row["mus"];
               ?>
-								<div class="maps_all">
-									<div class=<?=$row["class"]?> onmouseover=mus_on( \"<?=$row["mus"]?>\") onmouseout=mus_off( \"<?=$row["mus"]?>\")>
-									<div class="local_name_map"><?=$row["region"]?></div><div class="local_values_map" ><?=$row["human"]?></div></div>
-
-									<div class="measurement">
-										<div class="measurement_wrap">
-											<p style="font-size:11px; font-weight:500;">※서울을 클릭 시 아래 그래프와 연동</p>
-										</div>
-									</div>
-
+							<div class="maps_all">
+								<div class=<?=$row["class"]?> >
+								<div class="local_name_map" onmouseover=mus_on( <?=$row["mus"]?>) onmouseout=mus_off( <?=$row["mus"]?>)>
+									<?=$row["region"]?>
 								</div>
+								<div class="local_values_map" >
+									<?=$row["human"]?>
+								</div>
+							</div>
+							</div>
                         <?php
-                        	}
-                        ?>
+
+
+													}
+												?>
+												<div class="measurement">
+													<div class="measurement_wrap">
+														<p style="font-size:11px; font-weight:500;">※서울을 클릭 시 아래 그래프와 연동</p>
+													</div>
+												</div>
 
 					 	</section>
 						<section id="section_container" class="board_header_box">
@@ -440,15 +446,6 @@
 									forecast_chart.update();
 							});
 
-							$("#9").click(function() {
-									downFunction();
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_seoul;
-									data.datasets[0].label = "서울 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-
 					</script>
 					</body>
 
@@ -535,7 +532,11 @@
 
 							<!--서울 버튼 누르면..-->
 							<script type="text/javascript">
-								$("#8")
+							$(".m10").click(function(){
+								alert("hello");
+								downFunction();
+
+							});
 							</script>
 
 					</article>
