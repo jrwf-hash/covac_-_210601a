@@ -507,20 +507,16 @@
 </div>
 <!--원형 그래프 -->
 <?php
-$query = $db->query("select * from National");
-$arrayNationals = array();
-$arrayCounts = array();
-$dataPoints = array();
+	$query = $db->query("select * from National");
+	$arrayNationals = array();
+	$arrayCounts = array();
+	$dataPoints = array();
 
-while ($row = $query->fetch()) {
-	$arrayNationals = $row["national"];
-	echo $arrayNationals;
-	$arrayCounts = $row["count"];
-	echo $arrayCounts;
-
-	array_push($dataPoints, array("label"=>$arrayNationals, "y"=>$arrayCounts));
-
-}
+	while ($row = $query->fetch()) {
+		$arrayNationals = $row["national"];
+		$arrayCounts = $row["count"];
+		array_push($dataPoints, array("label"=>$arrayNationals, "y"=>$arrayCounts));
+	}
 
 ?>
 
