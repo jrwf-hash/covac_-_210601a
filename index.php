@@ -92,37 +92,37 @@
 							<!--지도 html-->
 						<section id="section_container" class="board_header_box2">
 					  	<div style="clear:both; position: relative; z-index: 1; top: -40px; left: 90px; zoom:1.5;">
-	              <a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus1') onmouseout=mus_off('mus1') onclick="javascript:void(0)">
+	              <a   onfocus='this.blur()' onmouseover=mus_on('mus1') onmouseout=mus_off('mus1') onclick="javascript:void(0)">
 								<img src='./map/m061.gif' alt='' border='0' name='mus1' class='list1'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus2') onmouseout=mus_off('mus2') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus2') onmouseout=mus_off('mus2') onclick="javascript:void(0)">
 								<img src='./map/m063.gif' alt='' border='0' name='mus2' class='list2'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus3') onmouseout=mus_off('mus3') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus3') onmouseout=mus_off('mus3') onclick="javascript:void(0)">
 								<img src='./map/m055.gif' alt='' border='0' name='mus3' class='list3'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus4') onmouseout=mus_off('mus4') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus4') onmouseout=mus_off('mus4') onclick="javascript:void(0)">
 								<img src='./map/m033.gif' alt='' border='0' name='mus4' class='list4'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus5') onmouseout=mus_off('mus5') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus5') onmouseout=mus_off('mus5') onclick="javascript:void(0)">
 								<img src='./map/m041.gif' alt='' border='0' name='mus5' class='list5'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus6') onmouseout=mus_off('mus6') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus6') onmouseout=mus_off('mus6') onclick="javascript:void(0)">
 								<img src='./map/m031.gif' alt='' border='0' name='mus6' class='list6'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus7') onmouseout=mus_off('mus7') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus7') onmouseout=mus_off('mus7') onclick="javascript:void(0)">
 								<img src='./map/m043.gif' alt='' border='0' name='mus7' class='list7'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus8') onmouseout=mus_off('mus8') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus8') onmouseout=mus_off('mus8') onclick="javascript:void(0)">
 								<img src='./map/m054.gif' alt='' border='0' name='mus8' class='list8'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus9') onmouseout=mus_off('mus9') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus9') onmouseout=mus_off('mus9') onclick="javascript:void(0)">
 								<img src='./map/m064.gif' alt='' border='0' name='mus9' class='list9'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus10') onmouseout=mus_off('mus10') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus10') onmouseout=mus_off('mus10') onclick="javascript:void(0)">
 								<img src='./map/m02.gif' alt='' border='0' name='mus10' class='list10'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus11') onmouseout=mus_off('mus11') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus11') onmouseout=mus_off('mus11') onclick="javascript:void(0)">
 								<img src='./map/m032.gif' alt='' border='0' name='mus11' class='list11'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus12') onmouseout=mus_off('mus12') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus12') onmouseout=mus_off('mus12') onclick="javascript:void(0)">
 								<img src='./map/m042.gif' alt='' border='0' name='mus12' class='list12'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus13') onmouseout=mus_off('mus13') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus13') onmouseout=mus_off('mus13') onclick="javascript:void(0)">
 								<img src='./map/m062.gif' alt='' border='0' name='mus13' class='list13'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus14') onmouseout=mus_off('mus14') onclick="javascript:void(0)">
+								<a onfocus='this.blur()' onmouseover=mus_on('mus14') onmouseout=mus_off('mus14') onclick="javascript:void(0)">
 								<img src='./map/m053.gif' alt='' border='0' name='mus14' class='list14'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus15') onmouseout=mus_off('mus15') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus15') onmouseout=mus_off('mus15') onclick="javascript:void(0)">
 								<img src='./map/m052.gif' alt='' border='0' name='mus15' class='list15'></a>
-								<a href='javascript:void(0)' onfocus='this.blur()' onmouseover=mus_on('mus16') onmouseout=mus_off('mus16') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus16') onmouseout=mus_off('mus16') onclick="javascript:void(0)">
 								<img src='./map/m051.gif' alt='' border='0' name='mus16' class='list16'></a>
 	            </div>
 
@@ -132,7 +132,7 @@
 
               ?>
 								<div class="maps_all">
-									<div class=<?=$row["class"]?> onmouseover=mus_on(<?=$row["mus"]?>) onmouseout=mus_off(<?=$row["mus"]?>)>
+									<div class=<?=$row["class"]?> onmouseover=mus_on("%s", <?=$row["mus"]?>) onmouseout=mus_off("%s", <?=$row["mus"]?>)>
 									<div class="local_name_map"><?=$row["region"]?></div><div class="local_values_map"><?=$row["human"]?></div></div>
 
 									<div class="measurement">
@@ -507,16 +507,20 @@
 </div>
 <!--원형 그래프 -->
 <?php
-	$num = $_REQUEST["num"];
-	$nationals = $db->query("select national from National where num = '$num'");
-	$counts = $db->query("select count from National where num = '$num'");
+$query = $db->query("select * from National");
+$arrayNationals = array();
+$arrayCounts = array();
+$dataPoints = array();
 
-	$national = $nationals->fetch();
-	$count = $counts->fetch();
+while ($row = $query->fetch()) {
+	$arrayNationals = $row["national"];
+	echo $arrayNationals;
+	$arrayCounts = $row["count"];
+	echo $arrayCounts;
 
-	$dataPoints = array(
-	array("label"=>$national, "y"=>$count)
-)
+	array_push($dataPoints, array("label"=>$arrayNationals, "y"=>$arrayCounts));
+
+}
 
 ?>
 
