@@ -440,7 +440,7 @@
 									<div class="ad_wrapper_mainpage">
 										<script type="text/javascript">
 												var imgArray= new Array();
-												imgArray[0] = "./src/assets/ad1.png";
+												imgArray[0] = "./src/assets/ad.png";
 												imgArray[1] = "./src/assets/ad2.png";
 												imgArray[2] = "./src/assets/ad3.png";
 												imgArray[3] = "./src/assets/ad4.png";
