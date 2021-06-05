@@ -102,7 +102,7 @@
 								<img src='./map/m033.gif' alt='' border='0' name='mus4' class='list4'></a>
 								<a   onfocus='this.blur()' onmouseover=mus_on('mus5') onmouseout=mus_off('mus5') onclick="javascript:void(0)">
 								<img src='./map/m041.gif' alt='' border='0' name='mus5' class='list5'></a>
-								<a   onfocus='this.blur()' onmouseover=mus_on('mus6') onmouseout=mus_off('mus6') onclick="javascript:void(0)">
+								<a   onfocus='this.blur()' onmouseover=mus_on('mus6') onmouseout=mus_off('mus6') onclick="downFunction()">
 								<img src='./map/m031.gif' alt='' border='0' name='mus6' class='list6'></a>
 								<a   onfocus='this.blur()' onmouseover=mus_on('mus7') onmouseout=mus_off('mus7') onclick="javascript:void(0)">
 								<img src='./map/m043.gif' alt='' border='0' name='mus7' class='list7'></a>
@@ -132,12 +132,12 @@
 
               ?>
 								<div class="maps_all">
-									<div class=<?=$row["class"]?> onmouseover=mus_on("%s", <?=$row["mus"]?>) onmouseout=mus_off("%s", <?=$row["mus"]?>)>
-									<div class="local_name_map"><?=$row["region"]?></div><div class="local_values_map"><?=$row["human"]?></div></div>
+									<div class=<?=$row["class"]?> onmouseover=mus_on( \"<?=$row["mus"]?>\") onmouseout=mus_off( \"<?=$row["mus"]?>\")>
+									<div class="local_name_map"><?=$row["region"]?></div><div class="local_values_map" ><?=$row["human"]?></div></div>
 
 									<div class="measurement">
 										<div class="measurement_wrap">
-											<p style="font-size:14px; font-weight:200;">서울을 클릭 시 아래 그래프와 연동</p>
+											<p style="font-size:11px; font-weight:500;">※서울을 클릭 시 아래 그래프와 연동</p>
 										</div>
 									</div>
 
@@ -167,7 +167,7 @@
 							<div class="dropdown_grid" justified>
 								<div class="dropdown">
 							  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							    전체
+							    일별
 							    <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -188,7 +188,18 @@
 								<li><a id="5" href="javascript:void(0)" class="dropdown-item" data-value="another action">AZ</a></li>
 							</ul>
 							</div>
-
+							<!--세번째 버튼 백신 -->
+							<div class="dropdown">
+							<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								지역
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a id="6" href="javascript:void(0)" class="dropdown-item" data-value="something else here">지역 - 일별</a></li>
+								<li><a id="7" href="javascript:void(0)" class="dropdown-item" data-value="action">지역 - 월별</a></li>
+								<li><a id="8" href="javascript:void(0)" class="dropdown-item" data-value="another action">지역 - 누적</a></li>
+							</ul>
+							</div>
 							</div>
 
 							<br>
@@ -220,7 +231,7 @@
 
 							const today = moment();
 							/*누적 60개 이하 지금은 40개 chart_labels 2*/
-							var chart_labels = [
+							var lables_accu = [
 
 							/*50*/
 							moment().subtract(49,"days").format("MM/DD"),
@@ -268,48 +279,53 @@
 							moment().subtract(7,"days").format("MM/DD"),
 							moment().subtract(6,"days").format("MM/DD"),
 							moment().subtract(5,"days").format("MM/DD"),
+							moment().subtract(5,"days").format("MM/DD"),
 							moment().subtract(4,"days").format("MM/DD"),
 							moment().subtract(3,"days").format("MM/DD"),
 							moment().subtract(2,"days").format("MM/DD"),
-							moment().subtract(1,"days").format("MM/DD"),
-							moment().format("MM/DD")
+							moment().subtract(1,"days").format("MM/DD")
 						];
 
-							/*월별 2개 chart_labels_1 1
-							- 데이터 y축 값 고정, 추가 더미데이터 넣어주면 고정됨 해결
+							/*월별 2개 labels_monthly 1
+							- 데이터 y축 값 고정, 추가 더미데이터 넣어주면 고정됨 해결 완료
 							*/
-							var chart_labels_1 = [
+							var labels_monthly = [
 							moment().subtract(2,"months").format("MM"),
 							moment().subtract(1,"months").format("MM"),
 							moment().format("MM")
 						];
 
-							/*일별 최근 5개 chart_labels_2 0 */
-							var chart_labels_2 = [
-							moment().subtract(4,"days").format("MM/DD"),
-							moment().subtract(3,"days").format("MM/DD"),
-							moment().subtract(2,"days").format("MM/DD"),
-							moment().subtract(1,"days").format("MM/DD"),
-							moment().format("MM/DD")
+							/*일별 최근 5개 labels_daily 0 */
+							var labels_daily = [
+								moment().subtract(5,"days").format("MM/DD"),
+								moment().subtract(4,"days").format("MM/DD"),
+								moment().subtract(3,"days").format("MM/DD"),
+								moment().subtract(2,"days").format("MM/DD"),
+								moment().subtract(1,"days").format("MM/DD")
 						];
 
-							/*서울 일단 최근 5개, 월별, 일별, 누적,*/
+							/*서울 일단 최근 5개 일별*/
 							var chart_labels_3 = [
+							moment().subtract(5,"days").format("MM/DD"),
 							moment().subtract(4,"days").format("MM/DD"),
 							moment().subtract(3,"days").format("MM/DD"),
 							moment().subtract(2,"days").format("MM/DD"),
-							moment().subtract(1,"days").format("MM/DD"),
-							moment().format("MM/DD")
+							moment().subtract(1,"days").format("MM/DD")
+
 						];
 
-							/*누적 labels accum, 월별 1 monthly, 일별 2 daily,*/
+
+
+							/*누적 labels accum, 월별 1 monthly, 일별 2 daily, az, pz는 하드코딩*/
 							var vac_daily = ['10', '30', '61', '32', '7'];
 							var vac_monthly = ['30', '60', '30', '32', '7'];
 							var vac_accum = ['20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7'];
 							var vac_total = ['40', '10', '60', '32', '7'];
 							var vac_pz = ['60', '90', '46', '32', '7'];
 							var vac_az = ['70', '30', '56', '32', '7'];
-							var vac_seoul = ['30', '300', '560', '320', '70'];
+							var vac_seoul= ['30', '300', '560', '320', '70'];
+							var vac_seoul_daily = ['30', '300', '560', '320', '70'];
+							var vac_seoul_monthly = ['30', '300', '560', '320', '70'];
 
 							var ctx = document.getElementById("forecast").getContext('2d');
 							var config = {
@@ -318,10 +334,10 @@
 										viewportMinimum:0
 									},
 									data: {
-											labels: chart_labels_2,
+											labels: labels_daily,
 											datasets: [ {
 													type: 'bar',
-													label: "서울 접종 현황",
+													label: "일별 접종 현황",
 													yAxisID: "y-axis-1",
 													backgroundColor: "#6EA24D",
 													data: vac_seoul,
@@ -351,7 +367,7 @@
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_daily;
 									data.datasets[0].label = "일별 접종 현황"
-									data.labels = chart_labels_2;
+									data.labels = labels_daily;
 									forecast_chart.update();
 							});
 
@@ -360,7 +376,7 @@
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_monthly;
 									data.datasets[0].label = "월별 접종 현황"
-									data.labels = chart_labels_1;
+									data.labels = labels_monthly;
 									forecast_chart.update();
 							});
 
@@ -369,7 +385,7 @@
 									var data = forecast_chart.config.data;
 									data.datasets[0].data =  vac_accum;
 									data.datasets[0].label = "누적 접종 현황"
-									data.labels = chart_labels;
+									data.labels = lables_accu;
 									forecast_chart.update();
 							});
 							/*백신 - 종합 최근 5일*/
@@ -377,7 +393,7 @@
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_total;
 									data.datasets[0].label = "백신 종합 접종 현황"
-									data.labels = chart_labels_2;
+									data.labels = labels_daily;
 									forecast_chart.update();
 							});
 							/*백신 - 화이자 최근 5일*/
@@ -385,7 +401,7 @@
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_pz;
 									data.datasets[0].label = "화이자 백신 접종 현황"
-									data.labels = chart_labels_2;
+									data.labels = labels_daily;
 									forecast_chart.update();
 							});
 							/*백신 - 아스트라 최근 5일*/
@@ -393,7 +409,25 @@
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_az;
 									data.datasets[0].label = "AZ 백신 접종 현황"
-									data.labels = chart_labels_2;
+									data.labels = labels_daily;
+									forecast_chart.update();
+							});
+
+							$("#6").click(function() {
+									downFunction();
+									var data = forecast_chart.config.data;
+									data.datasets[0].data = vac_seoul_daily;
+									data.datasets[0].label = "서울 일별 접종 현황"
+									data.labels = labels_daily;
+									forecast_chart.update();
+							});
+
+							$("#7").click(function() {
+									downFunction();
+									var data = forecast_chart.config.data;
+									data.datasets[0].data = vac_seoul_monthly;
+									data.datasets[0].label = "서울 월별 접종 현황"
+									data.labels = labels_daily;
 									forecast_chart.update();
 							});
 
@@ -401,8 +435,17 @@
 									downFunction();
 									var data = forecast_chart.config.data;
 									data.datasets[0].data = vac_seoul;
+									data.datasets[0].label = "서울 누적 접종 현황"
+									data.labels = labels_daily;
+									forecast_chart.update();
+							});
+
+							$("#9").click(function() {
+									downFunction();
+									var data = forecast_chart.config.data;
+									data.datasets[0].data = vac_seoul;
 									data.datasets[0].label = "서울 접종 현황"
-									data.labels = chart_labels_2;
+									data.labels = labels_daily;
 									forecast_chart.update();
 							});
 

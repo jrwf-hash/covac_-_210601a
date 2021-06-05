@@ -152,7 +152,7 @@
 		?>
 			<div class="responsive">
 				<div class="gallery">
-					<a target="_self" href="<?=$row["url"]?>">
+					<a target="_blank" href="<?=$row["url"]?>">
 						<img
 							src="<?=$row["img"]?>"
 							alt="<?=$row["alt"]?>"
@@ -208,7 +208,7 @@
 						<div id="footer_section_container">
 							<section>
 								<div class="ad_wrapper_mainpage">
-									<img src="./src/assets/ad.png" width="650"alt="ad" />
+									<img src="./src/assets/ad3.png" width="650"alt="ad" />
 								</div>
 							</section>
 						</div>

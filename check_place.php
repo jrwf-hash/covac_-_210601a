@@ -154,7 +154,7 @@
 						<div id="footer_section_container">
 							<section>
 								<div class="ad_wrapper_mainpage">
-									<img src="./src/assets/ad.png" width="650"alt="ad" />
+									<img src="./src/assets/ad2.png" width="650"alt="ad" />
 								</div>
 							</section>
 						</div>

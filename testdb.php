@@ -1,43 +1,70 @@
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "";
-
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	// Create database --------------------------------------------------------
-	$sql = "CREATE DATABASE IF NOT EXISTS db";
-
-	if (mysqli_query($conn, $sql)) {
-	    echo "Database created successfully<br>";
-	} else {
-	    echo "Error creating database: " . mysqli_error($conn) . "<br>";
-	}
-
-	$dbname = 'db';
-	mysqli_select_db ( $conn , $dbname);
-
-	if (!$conn) {
-	    die("select db connection failed: " . mysqli_connect_error());
-	}
-
-	//create accelaration table --------------------------------------------------
-	$sql = "CREATE TABLE IF NOT EXISTS `datasets` (
-	  `data1` VARCHAR(50) NOT NULL,
-	  `data2` VARCHAR(50) NOT NULL,
-	  `ID` INT NOT NULL AUTO_INCREMENT,
-	  PRIMARY KEY (`ID`))";
-
-	if(mysqli_query($conn, $sql)){
-	    echo "Table accelaration created successfully<br>";
-	} else {
-	    echo "Error creating accelaration table: " . mysqli_error($conn). "<br>";
-	}
-
-	$query = "INSERT INTO datasets (data1, data2) VALUES
-	('1', '2'), ('4', '5') ,('3', '5'),('6', '7'),('2', '4'),('0', '3'),('3', '2')";
-
-	$conn->query($query);
-	mysqli_close($conn);
+	require("covacDB.php");
 ?>
+
+<?php
+	$query = $db->query("select * from National");
+	$arrayNationals = array();
+	$arrayCounts = array();
+	$dataPoints = array();
+
+	while ($row = $query->fetch()) {
+		$arrayNationals = $row["national"];
+		echo $arrayNationals;
+		$arrayCounts = $row["count"];
+		echo $arrayCounts;
+
+		array_push($dataPoints, array("label"=>$arrayNationals, "y"=>$arrayCounts));
+
+	}
+?>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+
+
+	var chart = new CanvasJS.Chart("chartContainer1", {
+		animationEnabled: true,
+
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			yValueFormatString: "##0.0'%'",
+			indexLabel: "{label} {y}",
+			dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+	chart.render();
+
+
+
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Usage Share of Desktop Browsers"
+	},
+	subtitles: [{
+		text: "November 2017"
+	}],
+	data: [{
+		type: "pie",
+		yValueFormatString: "#,##0.00\"%\"",
+		indexLabel: "{label} ({y})",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+<script src="canvasjs.min.js"></script>
+</body>
+</html>
