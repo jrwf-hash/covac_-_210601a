@@ -132,8 +132,8 @@
 								$pic_num = $row["mus"];
               ?>
 							<div class="maps_all">
-								<div class=<?=$row["class"]?> >
-								<div class="local_name_map" onmouseover=mus_on( <?=$row["mus"]?>) onmouseout=mus_off( <?=$row["mus"]?>)>
+								<div class=<?=$row["class"]?> onmouseover=mus_on( <?=$row["mus"]?>) onmouseout=mus_off( <?=$row["mus"]?>)>
+								<div class="local_name_map" >
 									<?=$row["region"]?>
 								</div>
 								<div class="local_values_map" >
@@ -142,8 +142,6 @@
 							</div>
 							</div>
                         <?php
-
-
 													}
 												?>
 												<div class="measurement">
@@ -456,6 +454,8 @@
 						 	<!--원형 그래프-->
 							<div class="tables_name">
 								<h3>나라별 백신 접종 현황</h3>
+								<h6 style="font-size:10px; text-align:right; margin-top:10px;">※나라별 100명당 접종 회분의 퍼센티지 화 그래프입니다.</h6>
+
 
 							</div>
 
@@ -549,7 +549,7 @@
 		</div>
 
 </div>
-<!--원형 그래프 -->
+<!--원형 그래프 chartContainer-->
 <?php
 	$query = $db->query("select * from National");
 	$arrayNationals = array();
