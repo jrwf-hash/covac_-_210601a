@@ -408,6 +408,277 @@ var chart2 = new CanvasJS.Chart("newMainGraph", {
 
 chart2.render();
 }
+$("#0").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#1").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#2").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#3").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#4").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#5").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#6").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+$("#7").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
+
+$("#8").click(function() {
+	var chart2 = new CanvasJS.Chart("newMainGraph", {
+		animationEnabled: true,
+		colorSet: "colorSet1",
+
+		title:{
+			text: "일별 백신 접종 현황",
+			fontSize : 15,
+			fontWeight: "normal",
+			fontFamily:"sans-serif"
+		},
+		axisX:{
+				 labelFontSize: 13,
+				 labelFontWeight: "normal",
+				 fontFamily:"sans-serif"
+			 },
+		axisY: {
+
+			includeZero : true
+		},
+		dataPointMaxWidth: 70,
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.## 명",
+			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+
+	chart2.render();
+});
 </script>
 
   <!--*****************지도 script*****************-->
