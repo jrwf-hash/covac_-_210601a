@@ -208,6 +208,7 @@
 
 							<br>
 							<body>
+								<script src="canvasjs.min.js"></script>
 								<!--Ref
 							http://stackoverflow.com/questions/40061862/chart-js-update-bars-of-a-bar-chart
 							-->
@@ -216,7 +217,7 @@
 							    <div class="col-md-1"></div>
 							    <div class="col-md-10" >
 							      <!--Chart.js Canvas Tag -->
-							      <canvas id="forecast" width="700" height="400"></canvas>
+							      <div id="newMainGraph" style="height: 350px; width: 600px;"></div>
 							    </div>
 							    <div class="col-md-1"></div>
 							  </div>
@@ -227,224 +228,22 @@
 							<!--<button type="button" class="btn btn-success btn-md" onclick="addData();">Add Data </button><button type="button" class="btn btn-success btn-md" onclick="adjust2016();">Adjust 2016 </button></div> -->
 							    <div class="col-md-1"></div>
 							</div>
+							<?php
+							$query = $db->query("select * from (select * from Seoul order by date desc limit 5) as a order by date asc");
+							$vacDaily= array();
+							$dates = array();
+							$vacAccuDaily = array_sum($vacDaily);
 
-							<script>
-							Chart.defaults.global.defaultFontColor = 'grey';
-							Chart.defaults.global.defaultFontSize = 16;
-							Chart.defaults.global.defaultFontFamily = "NanumBarunGothic";
+							$dataPoints2 = array();
 
-							const today = moment();
-							/*누적 60개 이하 지금은 40개 chart_labels 2*/
-							var lables_accu = [
+							while ($row = $query->fetch()) {
 
-							/*50*/
-							moment().subtract(49,"days").format("MM/DD"),
-							moment().subtract(48,"days").format("MM/DD"),
-							moment().subtract(47,"days").format("MM/DD"),
-							moment().subtract(46,"days").format("MM/DD"),
-							moment().subtract(45,"days").format("MM/DD"),
-							moment().subtract(44,"days").format("MM/DD"),
-							moment().subtract(43,"days").format("MM/DD"),
-							moment().subtract(42,"days").format("MM/DD"),
-							moment().subtract(41,"days").format("MM/DD"),
-							moment().subtract(40,"days").format("MM/DD"),
-							moment().subtract(39,"days").format("MM/DD"),
-							moment().subtract(38,"days").format("MM/DD"),
-							moment().subtract(37,"days").format("MM/DD"),
-							moment().subtract(36,"days").format("MM/DD"),
-							moment().subtract(35,"days").format("MM/DD"),
-							moment().subtract(34,"days").format("MM/DD"),
-							moment().subtract(33,"days").format("MM/DD"),
-							moment().subtract(32,"days").format("MM/DD"),
-							moment().subtract(31,"days").format("MM/DD"),
-							moment().subtract(30,"days").format("MM/DD"),
-							moment().subtract(29,"days").format("MM/DD"),
-							moment().subtract(28,"days").format("MM/DD"),
-							moment().subtract(27,"days").format("MM/DD"),
-							moment().subtract(26,"days").format("MM/DD"),
-							moment().subtract(25,"days").format("MM/DD"),
-							moment().subtract(24,"days").format("MM/DD"),
-							moment().subtract(23,"days").format("MM/DD"),
-							moment().subtract(22,"days").format("MM/DD"),
-							moment().subtract(21,"days").format("MM/DD"),
-							moment().subtract(20,"days").format("MM/DD"),
-							moment().subtract(19,"days").format("MM/DD"),
-							moment().subtract(18,"days").format("MM/DD"),
-							moment().subtract(17,"days").format("MM/DD"),
-							moment().subtract(16,"days").format("MM/DD"),
-							moment().subtract(15,"days").format("MM/DD"),
-							moment().subtract(14,"days").format("MM/DD"),
-							moment().subtract(13,"days").format("MM/DD"),
-							moment().subtract(12,"days").format("MM/DD"),
-							moment().subtract(11,"days").format("MM/DD"),
-							moment().subtract(10,"days").format("MM/DD"),
-							moment().subtract(9,"days").format("MM/DD"),
-							moment().subtract(8,"days").format("MM/DD"),
-							moment().subtract(7,"days").format("MM/DD"),
-							moment().subtract(6,"days").format("MM/DD"),
-							moment().subtract(5,"days").format("MM/DD"),
-							moment().subtract(5,"days").format("MM/DD"),
-							moment().subtract(4,"days").format("MM/DD"),
-							moment().subtract(3,"days").format("MM/DD"),
-							moment().subtract(2,"days").format("MM/DD"),
-							moment().subtract(1,"days").format("MM/DD")
-						];
+								$vacDaily = $row["human"];
+								$dates = $row["date"];
+								array_push($dataPoints2, array( "label"=>$dates, "y"=>$vacDaily));
+							}
+							?>
 
-							/*월별 2개 labels_monthly 1
-							- 데이터 y축 값 고정, 추가 더미데이터 넣어주면 고정됨 해결 완료
-							*/
-							var labels_monthly = [
-							moment().subtract(2,"months").format("MM"),
-							moment().subtract(1,"months").format("MM"),
-							moment().format("MM")
-						];
-
-							/*일별 최근 5개 labels_daily 0 */
-							var labels_daily = [
-								moment().subtract(5,"days").format("MM/DD"),
-								moment().subtract(4,"days").format("MM/DD"),
-								moment().subtract(3,"days").format("MM/DD"),
-								moment().subtract(2,"days").format("MM/DD"),
-								moment().subtract(1,"days").format("MM/DD")
-						];
-
-							/*서울 일단 최근 5개 일별*/
-							var chart_labels_3 = [
-							moment().subtract(5,"days").format("MM/DD"),
-							moment().subtract(4,"days").format("MM/DD"),
-							moment().subtract(3,"days").format("MM/DD"),
-							moment().subtract(2,"days").format("MM/DD"),
-							moment().subtract(1,"days").format("MM/DD")
-
-						];
-
-
-
-							/*누적 labels accum, 월별 1 monthly, 일별 2 daily, az, pz는 하드코딩*/
-							var vac_daily = ['10', '30', '61', '32', '7'];
-							var vac_monthly = ['30', '60', '30', '32', '7'];
-							var vac_accum = ['20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7','20', '40', '60', '32', '7'];
-							var vac_total = ['40', '10', '60', '32', '7'];
-							var vac_pz = ['60', '90', '46', '32', '7'];
-							var vac_az = ['70', '30', '56', '32', '7'];
-							var vac_seoul= ['30', '300', '560', '320', '70'];
-							var vac_seoul_daily = ['30', '300', '560', '320', '70'];
-							var vac_seoul_monthly = ['30', '300', '560', '320', '70'];
-
-							var ctx = document.getElementById("forecast").getContext('2d');
-							var config = {
-									type: 'bar',
-									axisY:{
-										viewportMinimum:0
-									},
-									data: {
-											labels: labels_daily,
-											datasets: [ {
-													type: 'bar',
-													label: "일별 접종 현황",
-													yAxisID: "y-axis-1",
-													backgroundColor: "#6EA24D",
-													data: vac_seoul,
-											}]
-									},
-									options: {
-											scales: {
-													yAxes: [{
-															position: "left",
-															"id": "y-axis-1",
-															viewportMinimum:0
-													}],
-													xAxes: [{
-															// x축 굵기 수정
-															barPercentage: 1,
-															minimum:0
-													}]
-											}
-									}
-							};
-
-
-							var forecast_chart = new Chart(ctx, config);
-
-							/*일별*/
-							$("#0").click(function() {
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_daily;
-									data.datasets[0].label = "일별 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-
-							/*월별*/
-							$("#1").click(function() {
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_monthly;
-									data.datasets[0].label = "월별 접종 현황"
-									data.labels = labels_monthly;
-									forecast_chart.update();
-							});
-
-							/*누적*/
-							$("#2").click(function() {
-									var data = forecast_chart.config.data;
-									data.datasets[0].data =  vac_accum;
-									data.datasets[0].label = "누적 접종 현황"
-									data.labels = lables_accu;
-									forecast_chart.update();
-							});
-							/*백신 - 종합 최근 5일*/
-							$("#3").click(function() {
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_total;
-									data.datasets[0].label = "백신 종합 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-							/*백신 - 화이자 최근 5일*/
-							$("#4").click(function() {
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_pz;
-									data.datasets[0].label = "화이자 백신 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-							/*백신 - 아스트라 최근 5일*/
-							$("#5").click(function() {
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_az;
-									data.datasets[0].label = "AZ 백신 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-
-							$("#6").click(function() {
-									downFunction();
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_seoul_daily;
-									data.datasets[0].label = "서울 일별 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-
-							$("#7").click(function() {
-									downFunction();
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_seoul_monthly;
-									data.datasets[0].label = "서울 월별 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-
-							$("#8").click(function() {
-									downFunction();
-									var data = forecast_chart.config.data;
-									data.datasets[0].data = vac_seoul;
-									data.datasets[0].label = "서울 누적 접종 현황"
-									data.labels = labels_daily;
-									forecast_chart.update();
-							});
-
-					</script>
 					</body>
 
 			</section>
@@ -567,7 +366,7 @@
 <script>
 window.onload = function() {
 
-var chart = new CanvasJS.Chart("chartContainer", {
+var chart= new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 
 	data: [{
@@ -580,6 +379,34 @@ var chart = new CanvasJS.Chart("chartContainer", {
 });
 chart.render();
 
+var chart2 = new CanvasJS.Chart("newMainGraph", {
+	animationEnabled: true,
+	colorSet: "colorSet1",
+
+	title:{
+		text: "일별 백신 접종 현황",
+		fontSize : 15,
+		fontWeight: "normal",
+		fontFamily:"sans-serif"
+	},
+	axisX:{
+			 labelFontSize: 13,
+			 labelFontWeight: "normal",
+			 fontFamily:"sans-serif"
+		 },
+	axisY: {
+
+		includeZero : true
+	},
+	dataPointMaxWidth: 70,
+	data: [{
+		type: "column",
+		yValueFormatString: "#,##0.## 명",
+		dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+
+chart2.render();
 }
 </script>
 
