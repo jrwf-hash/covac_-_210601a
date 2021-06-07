@@ -183,7 +183,7 @@
 							<!--두번째 버튼 백신 -->
 							<div class="dropdown">
 							<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								백신
+								종합
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -261,7 +261,7 @@
 							}
 							 ?>
 							 <?php
-							 /*Seoul 서울 월별 $dataPoints4*/
+							 /*Seoul_sum 서울 월별 $dataPoints4*/
 							 $query = $db->query("select * from Seoul_sum");
 							 $vacDaily= array();
 							 $dates = array();
@@ -275,7 +275,57 @@
 							 	array_push($dataPoints4, array( "label"=>$dates, "y"=>$vacDaily));
 							 }
 							  ?>
+								<?php
+ 							 /*Korea_sum 전국 월별 $dataPoints5*/
 
+ 							 $query = $db->query("select * from Korea_sum");
+ 							 $vacDaily= array();
+ 							 $dates = array();
+
+ 							 $dataPoints5 = array();
+
+ 							 while ($row = $query->fetch()) {
+
+ 							 	$vacDaily = $row["sum"];
+ 							 	$dates = $row["date"];
+ 							 	array_push($dataPoints5, array( "label"=>$dates, "y"=>$vacDaily));
+ 							 }
+ 							  ?>
+
+								<?php
+ 							 /*Korea 전국 일별 $dataPoints6*/
+
+ 							 $query = $db->query("select * from (select * from Korea order by date desc limit 5) as a order by date asc");
+ 							 $vacDaily= array();
+ 							 $dates = array();
+
+ 							 $dataPoints6 = array();
+
+ 							 while ($row = $query->fetch()) {
+
+ 							 	$vacDaily = $row["human"];
+ 							 	$dates = $row["date"];
+ 							 	array_push($dataPoints6, array( "label"=>$dates, "y"=>$vacDaily));
+ 							 }
+ 							  ?>
+								<?php
+								/*Korea 전국 누적 $dataPoints7*/
+
+								$query = $db->query("select * from Korea order by date");
+								$vacDaily= array();
+								$dates = array();
+
+								$dataPoints7 = array();
+
+								while ($row = $query->fetch()) {
+
+								$vacDaily = $row["human"];
+
+								$dates = $row["date"];
+
+								array_push($dataPoints7, array( "label"=>$dates, "y"=>$vacDaily));
+								}
+								?>
 
 					</body>
 
@@ -417,7 +467,7 @@ var chart2 = new CanvasJS.Chart("newMainGraph", {
 	colorSet: "colorSet1",
 
 	title:{
-		text: "일별 백신 접종 현황",
+		text: "일별 접종 현황",
 		fontSize : 15,
 		fontWeight: "normal",
 		fontFamily:"sans-serif"
@@ -435,7 +485,7 @@ var chart2 = new CanvasJS.Chart("newMainGraph", {
 	data: [{
 		type: "column",
 		yValueFormatString: "#,##0.## 명",
-		dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo json_encode($dataPoints6, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 
@@ -466,7 +516,7 @@ $("#0").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($dataPoints6, JSON_NUMERIC_CHECK); ?>
 		}]
 	});
 
@@ -497,7 +547,7 @@ $("#1").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($dataPoints5, JSON_NUMERIC_CHECK); ?>
 		}]
 	});
 
@@ -529,7 +579,7 @@ $("#2").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($dataPoints7, JSON_NUMERIC_CHECK); ?>
 		}]
 	});
 
@@ -543,7 +593,7 @@ $("#3").click(function() {
 		colorSet: "colorSet1",
 
 		title:{
-			text: "백신 종합 접종 현황",
+			text: "일별 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -551,7 +601,8 @@ $("#3").click(function() {
 		axisX:{
 				 labelFontSize: 13,
 				 labelFontWeight: "normal",
-				 fontFamily:"sans-serif"
+				 fontFamily:"sans-serif",
+				 
 			 },
 		axisY: {
 
@@ -561,12 +612,23 @@ $("#3").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($dataPoints6, JSON_NUMERIC_CHECK); ?>
 		}]
 	});
 
 	chart2.render();
 });
+var myCurrentDate=new Date();
+var myPastDate=new Date(myCurrentDate);
+myPastDate.setDate(myPastDate.getDate() - 1);
+var myPastDate1=new Date(myCurrentDate);
+myPastDate1.setDate(myPastDate1.getDate() - 2);
+var myPastDate2=new Date(myCurrentDate);
+myPastDate2.setDate(myPastDate2.getDate() - 3);
+var myPastDate3=new Date(myCurrentDate);
+myPastDate3.setDate(myPastDate3.getDate() - 4);
+var myPastDate4=new Date(myCurrentDate);
+myPastDate4.setDate(myPastDate4.getDate() - 5);
 /*백신 화이자*/
 $("#4").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
@@ -582,7 +644,11 @@ $("#4").click(function() {
 		axisX:{
 				 labelFontSize: 13,
 				 labelFontWeight: "normal",
-				 fontFamily:"sans-serif"
+				 fontFamily:"sans-serif",
+
+				 labelFormatter: function (e) {
+				return CanvasJS.formatDate( e.value, "YYYY.MM.DD");
+			}
 			 },
 		axisY: {
 
@@ -592,7 +658,13 @@ $("#4").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints:[
+				{ x: myPastDate4, y: 71 },
+        { x: myPastDate3, y: 55},
+        { x: myPastDate2, y: 50 },
+        { x: myPastDate1, y: 65 },
+        { x: myPastDate, y: 95 },
+			]
 		}]
 	});
 
@@ -609,12 +681,16 @@ $("#5").click(function() {
 			text: "AZ 백신 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
-			fontFamily:"sans-serif"
+			fontFamily:"sans-serif",
+
 		},
 		axisX:{
 				 labelFontSize: 13,
 				 labelFontWeight: "normal",
-				 fontFamily:"sans-serif"
+				 fontFamily:"sans-serif",
+				 labelFormatter: function (e) {
+	 		 return CanvasJS.formatDate( e.value, "YYYY.MM.DD");
+	 	 }
 			 },
 		axisY: {
 
@@ -624,7 +700,11 @@ $("#5").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: [{ x: myPastDate4, y: 71 },
+			{ x: myPastDate3, y: 55},
+			{ x: myPastDate2, y: 50 },
+			{ x: myPastDate1, y: 65 },
+			{ x: myPastDate, y: 95 },]
 		}]
 	});
 
