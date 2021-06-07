@@ -602,7 +602,7 @@ $("#3").click(function() {
 				 labelFontSize: 13,
 				 labelFontWeight: "normal",
 				 fontFamily:"sans-serif",
-				 
+
 			 },
 		axisY: {
 
@@ -659,11 +659,11 @@ $("#4").click(function() {
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
 			dataPoints:[
-				{ x: myPastDate4, y: 71 },
-        { x: myPastDate3, y: 55},
-        { x: myPastDate2, y: 50 },
-        { x: myPastDate1, y: 65 },
-        { x: myPastDate, y: 95 },
+				{ x: myPastDate4, y: 20301 },
+        { x: myPastDate3, y: 40562},
+        { x: myPastDate2, y: 54803 },
+        { x: myPastDate1, y: 140500 },
+        { x: myPastDate, y: 6503 },
 			]
 		}]
 	});
@@ -700,11 +700,11 @@ $("#5").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: [{ x: myPastDate4, y: 71 },
-			{ x: myPastDate3, y: 55},
-			{ x: myPastDate2, y: 50 },
-			{ x: myPastDate1, y: 65 },
-			{ x: myPastDate, y: 95 },]
+			dataPoints: [{ x: myPastDate4, y: 17063 },
+			{ x: myPastDate3, y: 37420},
+			{ x: myPastDate2, y: 56080 },
+			{ x: myPastDate1, y: 150500 },
+			{ x: myPastDate, y: 1534 },]
 		}]
 	});
 
