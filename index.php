@@ -228,11 +228,13 @@
 							<!--<button type="button" class="btn btn-success btn-md" onclick="addData();">Add Data </button><button type="button" class="btn btn-success btn-md" onclick="adjust2016();">Adjust 2016 </button></div> -->
 							    <div class="col-md-1"></div>
 							</div>
+							<!--백신그래프 데이터 모음  php-->
 							<?php
+							/*Seoul 서울 일별 최근 5일*/
 							$query = $db->query("select * from (select * from Seoul order by date desc limit 5) as a order by date asc");
 							$vacDaily= array();
 							$dates = array();
-							$vacAccuDaily = array_sum($vacDaily);
+
 
 							$dataPoints2 = array();
 
@@ -243,6 +245,37 @@
 								array_push($dataPoints2, array( "label"=>$dates, "y"=>$vacDaily));
 							}
 							?>
+							<?php
+							/*Seoul 서울 누적 $dataPoints3*/
+							$query = $db->query("select * from Seoul");
+							$vacDaily= array();
+							$dates = array();
+
+							$dataPoints3 = array();
+
+							while ($row = $query->fetch()) {
+
+								$vacDaily = $row["human"];
+								$dates = $row["date"];
+								array_push($dataPoints3, array( "label"=>$dates, "y"=>$vacDaily));
+							}
+							 ?>
+							 <?php
+							 /*Seoul 서울 월별 $dataPoints4*/
+							 $query = $db->query("select * from Seoul_sum");
+							 $vacDaily= array();
+							 $dates = array();
+
+							 $dataPoints4 = array();
+
+							 while ($row = $query->fetch()) {
+
+							 	$vacDaily = $row["sum"];
+							 	$dates = $row["date"];
+							 	array_push($dataPoints4, array( "label"=>$dates, "y"=>$vacDaily));
+							 }
+							  ?>
+
 
 					</body>
 
@@ -408,13 +441,14 @@ var chart2 = new CanvasJS.Chart("newMainGraph", {
 
 chart2.render();
 }
+/*전국 일별*/
 $("#0").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "일별 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -438,13 +472,14 @@ $("#0").click(function() {
 
 	chart2.render();
 });
+/*전국 월별*/
 $("#1").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "월별 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -468,13 +503,15 @@ $("#1").click(function() {
 
 	chart2.render();
 });
+
+/*전국 누적*/
 $("#2").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "누적 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -498,13 +535,15 @@ $("#2").click(function() {
 
 	chart2.render();
 });
+
+/*백신 종합*/
 $("#3").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "백신 종합 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -528,13 +567,14 @@ $("#3").click(function() {
 
 	chart2.render();
 });
+/*백신 화이자*/
 $("#4").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "화이자 백신 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -558,13 +598,15 @@ $("#4").click(function() {
 
 	chart2.render();
 });
+
+/*백신 AZ*/
 $("#5").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "AZ 백신 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -588,13 +630,15 @@ $("#5").click(function() {
 
 	chart2.render();
 });
+
+/*서울 - 일별*/
 $("#6").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "서울 일별 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -618,13 +662,14 @@ $("#6").click(function() {
 
 	chart2.render();
 });
+/*지역 - 서울 - 월별*/
 $("#7").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "서울 월별 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -642,20 +687,21 @@ $("#7").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}]
 	});
 
 	chart2.render();
 });
 
+/*서울 지역 누적*/
 $("#8").click(function() {
 	var chart2 = new CanvasJS.Chart("newMainGraph", {
 		animationEnabled: true,
 		colorSet: "colorSet1",
 
 		title:{
-			text: "일별 백신 접종 현황",
+			text: "서울 누적 접종 현황",
 			fontSize : 15,
 			fontWeight: "normal",
 			fontFamily:"sans-serif"
@@ -673,7 +719,7 @@ $("#8").click(function() {
 		data: [{
 			type: "column",
 			yValueFormatString: "#,##0.## 명",
-			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		}]
 	});
 
