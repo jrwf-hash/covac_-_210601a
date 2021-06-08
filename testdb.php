@@ -3,21 +3,27 @@
 ?>
 
 <?php
-	$query = $db->query("select * from National");
-	$arrayNationals = array();
-	$arrayCounts = array();
-	$dataPoints = array();
+/*Korea 전국 누적 $dataPoints7*/
 
-	while ($row = $query->fetch()) {
-		$arrayNationals = $row["national"];
-		echo $arrayNationals;
-		$arrayCounts = $row["count"];
-		echo $arrayCounts;
+$query = $db->query("select * from Korea order by date");
+$vacDaily= array();
+$dates = array();
 
-		array_push($dataPoints, array("label"=>$arrayNationals, "y"=>$arrayCounts));
+$dataPoints7 = array();
 
-	}
+while ($row = $query->fetch()) {
+
+$vacDaily = $row["human"];
+echo $vacDaily;
+$dates = $row["date"];
+echo "<br>";
+echo $dates;
+echo "<br>";
+array_push($dataPoints7, array( "label"=>$dates, "y"=>$vacDaily));
+}
 ?>
+
+
 
 <!DOCTYPE HTML>
 <html>
@@ -25,46 +31,43 @@
 <script>
 window.onload = function() {
 
+var fontFamily = "NanumGothic"
 
-
-	var chart = new CanvasJS.Chart("chartContainer1", {
-		animationEnabled: true,
-
-		data: [{
-			type: "pie",
-			startAngle: 240,
-			yValueFormatString: "##0.0'%'",
-			indexLabel: "{label} {y}",
-			dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-		}]
-	});
-	chart.render();
-
-
-
-
-var chart = new CanvasJS.Chart("chartContainer", {
+var chart = new CanvasJS.Chart("newMainGraph", {
 	animationEnabled: true,
-	title: {
-		text: "Usage Share of Desktop Browsers"
+	colorSet: "colorSet1",
+
+	title:{
+		text: "일별 백신 접종 현황",
+		fontSize : 20,
+ 		fontWeight: "normal",
+		fontFamily:"sans-serif"
 	},
-	subtitles: [{
-		text: "November 2017"
-	}],
+	axisX:{
+			 labelFontSize: 13,
+			 labelFontWeight: "normal",
+			 fontFamily:"sans-serif"
+		 },
+	axisY: {
+
+		includeZero : true
+	},
+	dataPointMaxWidth: 70,
 	data: [{
-		type: "pie",
-		yValueFormatString: "#,##0.00\"%\"",
-		indexLabel: "{label} ({y})",
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+		type: "column",
+		yValueFormatString: "#,##0.## tonnes",
+		dataPoints: <?php echo json_encode($dataPoints7, JSON_NUMERIC_CHECK); ?>
 	}]
 });
+
 chart.render();
 
 }
+
 </script>
 </head>
 <body>
-<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+<div id="newMainGraph" style="height: 400px; width: 700px;"></div>
 <script src="canvasjs.min.js"></script>
 </body>
 </html>

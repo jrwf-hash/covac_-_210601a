@@ -98,7 +98,8 @@
 						</tr>
 						<tr>
 							<th>파일 첨부</th>
-							<td> <input class="input_upload_file" type="file" name="img"/></td>
+							<td > <input class="input_upload_file" type="file" name="img"/><input class="input_upload_btn" type="button" name="btn" value="업로드"/></td>
+							
 						</tr>
 						<tr>
 							<td colspan="2">
