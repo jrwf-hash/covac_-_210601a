@@ -1,6 +1,9 @@
 "# SchoolProject2101_COVAC"
 ITSW_3_D_2021_TeamProject
 
+Shingu College 2021.03 ~ 06 TeamProject
+COVAC
+
 UPDATES
 21.06.02
 
